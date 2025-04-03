@@ -90,6 +90,6 @@ Feel free to fork, tweak, or suggest improvements! Open an issue or PR if you’
 
 ---
 
-*Made by [your-username] to explore C’s chaos and Rust’s calm.*
+*Made by [FelixQLe-HopLe] to explore C’s chaos and Rust’s calm.*
 
 ---

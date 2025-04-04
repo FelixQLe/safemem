@@ -1,9 +1,3 @@
-# SafeMem
-
-Below is a polished README for your "SafeMem: C-to-Rust Memory Safety Demo" project, tailored for a GitHub repository. It’s concise, professional, and highlights the project’s purpose, setup, and usage, while leaving room for you to customize details like your GitHub handle or license. This assumes the project structure and goals from our earlier discussion, as of March 28, 2025.
-
----
-
 # SafeMem: C-to-Rust Memory Safety Demo
 
 **SafeMem** is a small, educational project that demonstrates how Rust eliminates common memory safety vulnerabilities found in C. It features a simple buffer manager implemented in both languages: a vulnerable C version prone to buffer overflows, use-after-free, and double-free errors, and a safe Rust version leveraging ownership and bounds checking. Perfect for learning about memory safety or showcasing Rust’s systems programming strengths!

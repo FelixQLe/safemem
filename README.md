@@ -68,15 +68,36 @@ safemem/
 - **FFI**: Rust calls C via `extern "C"` to compare side-by-side.
 
 ## Try It Out
-- Overflow the C buffer: Pass a huge string (e.g., 1000 chars) and watch it break.  
-- Use-after-free: Append after freeing in C, then try in Rust (it won’t compile).  
-- Debug with `valgrind`: `valgrind --leak-check=full target/debug/safemem`.
+Modify `main.rs` to test these specific cases and see C break while Rust holds strong:
+
+- **Buffer Overflows**:  
+  1. **Small Overflow**: Append `"Hello"` to a C buffer with `capacity=4`. Exceeds limit, likely corrupts memory. Rust’s `Vec` grows safely.  
+     - C: Crashes or prints garbage.  
+     - Rust: Succeeds with `"Hello"`.  
+  2. **Large Overflow**: Append a 1000-char string (e.g., `"A".repeat(1000)` in Rust, `char big[1000]` in C). C overwrites wildly; Rust handles it.  
+     - C: Undefined behavior, possible segfault.  
+     - Rust: Allocates and stores cleanly.  
+
+- **Use-After-Free**:  
+  1. **Simple Reuse**: Free a C buffer, then append `"World"`. C may corrupt heap; Rust won’t compile.  
+     - C: Garbage output or crash.  
+     - Rust: `r_buf.append("World")` after `drop` fails at compile time.  
+  2. **Double Append**: Free a C buffer, append `"Foo"`, then `"Bar"`. C’s chaos escalates; Rust stays safe.  
+     - C: Increasingly unpredictable behavior.  
+     - Rust: Blocked by ownership rules.  
+
+- **Double-Free**:  
+  1. **Basic Double-Free**: Call `buffer_free` twice on the same C buffer. Often crashes (e.g., heap corruption). Rust’s `Drop` runs once.  
+     - C: Segfault or silent error.  
+     - Rust: No equivalent—memory freed automatically.  
+  2. **Free-and-Reuse**: Free a C buffer, append `"Test"`, free again. C doubles down on errors; Rust avoids the issue.  
+     - C: Likely aborts (e.g., `glibc` detects double-free).  
+     - Rust: `Drop` ensures single cleanup.  
+
+- **Debugging**: Run C tests with `valgrind --leak-check=full target/debug/safemem` to see overflows and leaks in action.
 
 ## Contributing
 Feel free to fork, tweak, or suggest improvements! Open an issue or PR if you’ve got ideas—extra vulnerabilities to demo, performance tweaks, whatever.
-
-## License
-[MIT License](LICENSE) - Free to use, modify, and share.
 
 ## Acknowledgments
 - Inspired by real-world memory safety challenges in OS development.  
@@ -84,6 +105,6 @@ Feel free to fork, tweak, or suggest improvements! Open an issue or PR if you’
 
 ---
 
-*Made by [FelixQLe-HopLe] to explore C’s chaos and Rust’s calm.*
+*Made by [HopLe133884] to explore C’s chaos and Rust’s calm.*
 
 ---

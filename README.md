@@ -22,7 +22,7 @@ Memory safety bugs (e.g., buffer overflows) account for ~70% of serious security
 1. Clone the repo:
    ```bash
    git clone https://github.com/Hop-Le133884/SafeMem_C-to-Rust_Memory_Safety_Demo.git
-   cd safemem
+   cd SafeMem_C-to-Rust_Memory_Safety_Demo
    ```
 2. Build and run:
    ```bash

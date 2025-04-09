@@ -1,1 +1,0 @@
-/home/hople/Texas\ A&M\ University/working_folder/SafeMem_C-to-Rust_Memory_Safety_Demo/target/debug/safemem_c-to-rust_memory_safety_demo: /home/hople/Texas\ A&M\ University/working_folder/SafeMem_C-to-Rust_Memory_Safety_Demo/src/main.rs

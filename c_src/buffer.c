@@ -12,12 +12,9 @@ Buffer* buffer_new(size_t capacity) {
 
 void buffer_append(Buffer* buf, const char* str) {
     size_t len = strlen(str);
-    if (buf->size + len >= buf->capacity) {
-        buf->capacity *= 2;
-        buf->data = realloc(buf->data, buf->capacity);
-    }
+    // No resizing—write directly, even if it overflows
     memcpy(buf->data + buf->size, str, len);
-    buf->size += len;
+    buf->size += len;  // Update size, even if it exceeds capacity
 }
 
 void buffer_free(Buffer* buf) {

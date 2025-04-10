@@ -43,5 +43,5 @@ cargo:rerun-if-env-changed=ARFLAGS_x86_64-unknown-linux-gnu
 ARFLAGS_x86_64-unknown-linux-gnu = None
 cargo:rustc-link-lib=static=buffer
 cargo:rustc-link-search=native=/home/hople/Texas A&M University/working_folder/SafeMem_C-to-Rust_Memory_Safety_Demo/target/debug/build/safemem_c-to-rust_memory_safety_demo-08ce96ce21c89762/out
-cargo:rustc-link-search=native=/home/hople/Texas A&M University/working_folder/SafeMem_C-to-Rust_Memory_Safety_Demo/target/debug/build/safemem_c-to-rust_memory_safety_demo-08ce96ce21c89762/out
+cargo:rustc-link-search=native=target/debug/build/safemem_c-to-rust_memory_safety_demo-08ce96ce21c89762/out/libbuffer.a
 cargo:rustc-link-lib=static=buffer

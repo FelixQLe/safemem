@@ -22,7 +22,7 @@ void test_c_vulnerabilities() {
     big[1000] = '\0';
     buffer_append(c_buf2, big);
     printf("Large overflow: Appended 1000 'A's to capacity=4 (wild overwrite)\n");
-    buffer_free(c_buf2);
+    buffer_free(c_buf2); 
 }
 
 int main() {

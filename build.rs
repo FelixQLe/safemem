@@ -1,10 +1,16 @@
+use std::env;
+
 fn main() {
+    // Compile C code
     cc::Build::new()
         .file("c_src/buffer.c")
-        .compile("buffer");  // Compiles to libbuffer.a
+        .include("c_src")
+        .compile("buffer");
 
-    // let out_dir = std::env::var("OUT_DIR").unwrap();
-    let path  = "target/debug/build/safemem_c-to-rust_memory_safety_demo-08ce96ce21c89762/out/libbuffer.a";
-    println!("cargo:rustc-link-search=native={}", path);
-    println!("cargo:rustc-link-lib=static=buffer");  // Link libbuffer.a
+    // Tell cargo to look for libraries in the specified directory
+    println!("cargo:rustc-link-search=native={}", env::var("OUT_DIR").unwrap());
+    
+    // Rerun if C source files change
+    println!("cargo:rerun-if-changed=c_src/buffer.c");
+    println!("cargo:rerun-if-changed=c_src/buffer.h");
 }

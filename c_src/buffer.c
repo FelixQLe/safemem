@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <buffer.h>
+#include "buffer.h"
 
 // Initialize a new buffer with given capacity
 Buffer* buffer_init(size_t initial_capacity) {
@@ -57,7 +57,7 @@ void buffer_free(Buffer* buffer) {
 // Print buffer contents (helper for debugging)
 void buffer_print(Buffer* buffer) {
     printf("Buffer (size=%zu, capacity=%zu):", buffer->size, buffer->capacity);
-    for (size_t i = 0, i < buffer->size, i++) {
+    for (size_t i = 0; i < buffer->size; i++) {
         printf("%c", buffer->data[i]);
     }
     printf("\n");

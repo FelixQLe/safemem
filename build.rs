@@ -4,6 +4,7 @@ extern crate cc;
 use std::path::PathBuf;
 
 fn main() {
+
     // Tell cargo to invalidate the built crate whenever the wrapper changes
     println!("cargo:rerun-if-changed=c_src/buffer.h");
     let bindings = bindgen::Builder::default()
@@ -24,5 +25,10 @@ fn main() {
     // Build static library
     cc::Build::new()
         .file("c_src/buffer.c")
+        .flag("-fsanitize=address")
         .compile("libbuffer.a");
+
+    // Ensure the Rust linker includes ASan
+    println!("cargo:rustc-link-lib=asan"); // Link against libasan
+    println!("cargo:rustc-link-arg=-fsanitize=address"); // Pass ASan to linker
 }

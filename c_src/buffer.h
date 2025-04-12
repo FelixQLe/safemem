@@ -20,7 +20,10 @@ void buffer_append(Buffer* buffer, const char* data, size_t length);
 size_t buffer_size(Buffer* buffer);
 
 // Get buffer data
-char* buffer_data(Buffer* buffer);
+//char* buffer_data(Buffer* buffer);
+
+// Double free buffer
+void buffer_double_free(Buffer* buffer);
 
 // VULNERABLE: Free buffer with no safeguards against double-free
 void buffer_free(Buffer* buffer);

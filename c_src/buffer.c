@@ -41,8 +41,12 @@ size_t buffer_size(Buffer* buffer) {
 }
 
 // Get buffer data
-char* buffer_data(Buffer* buffer) {
+/*char* buffer_data(Buffer* buffer) {
     return buffer->data;
+}*/
+
+void buffer_double_free(Buffer* buffer) {
+    free(buffer);
 }
 
 // VULNERABLE: Free buffer with no safeguards against double-free

@@ -26,9 +26,12 @@ fn main() {
     cc::Build::new()
         .file("c_src/buffer.c")
         .flag("-fsanitize=address")
+        .flag("-fsanitize-recover=address")
         .compile("libbuffer.a");
 
     // Ensure the Rust linker includes ASan
     println!("cargo:rustc-link-lib=asan"); // Link against libasan
     println!("cargo:rustc-link-arg=-fsanitize=address"); // Pass ASan to linker
+    println!("cargo:rustc-link-arg=-fsanitize-recover=address");//
+
 }

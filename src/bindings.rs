@@ -43,7 +43,7 @@ unsafe extern "C" {
     pub fn buffer_size(buffer: *mut Buffer) -> usize;
 }
 unsafe extern "C" {
-    pub fn buffer_data(buffer: *mut Buffer) -> *mut ::std::os::raw::c_char;
+    pub fn buffer_double_free(buffer: *mut Buffer);
 }
 unsafe extern "C" {
     pub fn buffer_free(buffer: *mut Buffer);

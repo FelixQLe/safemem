@@ -3,11 +3,16 @@ name = "safemem_c-to-rust_memory_safety_demo"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "safemem"
+path = "src/lib.rs"
+
+[[test]]
+name = "buffer"
+path = "tests/buffer.rs"
+
 [dependencies]
 
 [build-dependencies]
 bindgen = "0.71.1"
 cc = "1.0"
-
-[profile.dev]
-debug = true 

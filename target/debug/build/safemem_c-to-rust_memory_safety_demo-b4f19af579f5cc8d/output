@@ -58,3 +58,4 @@ cargo:rustc-link-lib=static=buffer
 cargo:rustc-link-search=native=/home/hople/Texas A&M University/working_folder/SafeMem_C-to-Rust_Memory_Safety_Demo/target/debug/build/safemem_c-to-rust_memory_safety_demo-b4f19af579f5cc8d/out
 cargo:rustc-link-lib=asan
 cargo:rustc-link-arg=-fsanitize=address
+cargo:rustc-link-arg=-fsanitize-recover=address

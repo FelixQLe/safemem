@@ -97,8 +97,8 @@ void test_use_after_free_1() {
     
     // Use after free: access data
     printf("Attempting to access data after free...\n");
-    char* data = buffer_data(buffer);  // Accessing freed memory
-    printf("Data after free: %s\n", data);  // This might crash or show garbage
+    // char* data = buffer_data(buffer);  // Accessing freed memory
+    buffer_print(buffer); // This might crash or show garbage
     
     printf("Test completed\n");  // We may not reach here
 }
@@ -133,12 +133,12 @@ int main() {
     
     // Uncomment one test at a time to observe behavior
     
-    // test_buffer_overflow_1();
+    test_buffer_overflow_1();
     test_buffer_overflow_2();
-    // test_double_free_1();
-    // test_double_free_2();
-    // test_use_after_free_1();
+    test_use_after_free_1();
     // test_use_after_free_2();
+    test_double_free_1();
+    // test_double_free_2();
     
     printf("\nAll tests completed (if you see this, some tests didn't crash as expected)\n");
     return 0;

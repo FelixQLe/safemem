@@ -1,16 +1,28 @@
-use std::env;
+/* File: build.rs */
+extern crate bindgen;
+extern crate cc;
+use std::path::PathBuf;
 
 fn main() {
-    // Compile C code
+    // Tell cargo to invalidate the built crate whenever the wrapper changes
+    println!("cargo:rerun-if-changed=c_src/buffer.h");
+    let bindings = bindgen::Builder::default()
+        // The input header we would like to generate bindings for.
+        .header("c_src/buffer.h")
+        // Tell cargo to invalidate the built crate whenever any of the
+        // included header file changed
+        .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        // Finish the builder and generate the bindings.
+        .generate()
+        .expect("Unable to generate bindings");
+
+    // Write the bindings to the src/bindings.rs file
+    let out_path = PathBuf::from("src");
+    bindings.write_to_file(out_path.join("bindings.rs"))
+        .expect("Couldn't write bindings!");
+
+    // Build static library
     cc::Build::new()
         .file("c_src/buffer.c")
-        .include("c_src")
-        .compile("buffer");
-
-    // Tell cargo to look for libraries in the specified directory
-    println!("cargo:rustc-link-search=native={}", env::var("OUT_DIR").unwrap());
-    
-    // Rerun if C source files change
-    println!("cargo:rerun-if-changed=c_src/buffer.c");
-    println!("cargo:rerun-if-changed=c_src/buffer.h");
+        .compile("libbuffer.a");
 }

@@ -53,10 +53,9 @@ void buffer_free(Buffer* buffer) {
     free(buffer);
     // not setting pointers to NULL (buffer->data = NULL) after free allows use-after-free
 }
-
-// Print buffer contents (helper for debugging)
+// Print bufer contents (help for debugging)
 void buffer_print(Buffer* buffer) {
-    printf("Buffer (size=%zu, capacity=%zu):", buffer->size, buffer->capacity);
+    printf("Buffer (size=%zu, capacity=%zu): ", buffer->size, buffer->capacity);
     for (size_t i = 0; i < buffer->size; i++) {
         printf("%c", buffer->data[i]);
     }

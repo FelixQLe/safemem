@@ -35,15 +35,19 @@ void buffer_append(Buffer* buffer, const char* data, size_t length) {
 
 }
 
+// Get buffer capacity
+size_t buffer_capacity(Buffer* buffer) {
+    return buffer->capacity
+}
 // Get current buffer size
 size_t buffer_size(Buffer* buffer) {
     return buffer->size;
 }
 
 // Get buffer data
-/*char* buffer_data(Buffer* buffer) {
+char* buffer_data(Buffer* buffer) {
     return buffer->data;
-}*/
+}
 
 void buffer_double_free(Buffer* buffer) {
     free(buffer);
@@ -57,6 +61,7 @@ void buffer_free(Buffer* buffer) {
     free(buffer);
     // not setting pointers to NULL (buffer->data = NULL) after free allows use-after-free
 }
+
 // Print bufer contents (help for debugging)
 void buffer_print(Buffer* buffer) {
     printf("Buffer (size=%zu, capacity=%zu): ", buffer->size, buffer->capacity);

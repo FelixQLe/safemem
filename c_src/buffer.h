@@ -19,8 +19,11 @@ void buffer_append(Buffer* buffer, const char* data, size_t length);
 // Get current buffer size
 size_t buffer_size(Buffer* buffer);
 
+// Get buffer capacity
+size_t buffer_capacity(Buffer* buffer);
+
 // Get buffer data
-//char* buffer_data(Buffer* buffer);
+char* buffer_data(Buffer* buffer);
 
 // Double free buffer
 void buffer_double_free(Buffer* buffer);

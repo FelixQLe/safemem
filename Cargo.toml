@@ -7,10 +7,6 @@ edition = "2024"
 name = "safemem"
 path = "src/lib.rs"
 
-[[test]]
-name = "buffer"
-path = "tests/buffer.rs"
-
 [dependencies]
 
 [build-dependencies]

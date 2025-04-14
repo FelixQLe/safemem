@@ -37,7 +37,7 @@ void buffer_append(Buffer* buffer, const char* data, size_t length) {
 
 // Get buffer capacity
 size_t buffer_capacity(Buffer* buffer) {
-    return buffer->capacity
+    return buffer->capacity;
 }
 // Get current buffer size
 size_t buffer_size(Buffer* buffer) {
